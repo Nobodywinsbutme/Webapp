@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    background-color: #acacac;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: auto;
+    max-width: 1200px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.container div {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 8;
+}
+header, footer {
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    flex-grow: 1;
+    border: 2px solid black;
+}
+aside {
+    background-color: rgb(203, 203, 34);
+    padding: 20px;
+    width: 150px;
+    flex-grow: 1;
+    border: 2px solid black;
+}
+main {
+    flex: 1;
+    padding: 20px;
+    flex-grow: 3;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid black;
+}
+    

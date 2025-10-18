@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    background-color: #acacac;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: auto;
+    max-width: 1200px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.container div {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 8;
+}
+header, footer {
+    background-color: red;
+    padding: 20px;
+    text-align: center;
+    flex-grow: 1;
+}
+aside {
+    background-color: yellow;
+    padding: 20px;
+    text-align: center;
+    flex-grow: 1;
+}
+main {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    flex-grow: 3;
+    background-color: green;
+}
+    
