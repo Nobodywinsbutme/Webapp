@@ -199,12 +199,23 @@
         
         function removeFromCart(itemId) {
             // TODO: Remove item from cart
+            cart = cart.filter(item => item.id !== itemId);
+            renderCart();
+            calculateTotal();
 
         }
         
         function updateQuantity(productId, change) {
             // TODO: Update item quantity (change is +1 or -1)
-
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                }
+            }
+            renderCart();
+            calculateTotal();
         }
         
         function calculateTotal() {
@@ -235,7 +246,7 @@
                     <div class = "product-card">
                         <div class = "product-image">${product.image}</div>
                         <div class = "product-name">${product.name}</div>
-                        <div class = "product-price">${product.price}</div>
+                        <div class = "product-price">$${product.price}</div>
                         <button class = "add-to-cart-btn" onclick="addToCart(${product.id})">Add to Cart</button>
                     </div>
                 `;   
@@ -244,18 +255,30 @@
         
         function renderCart() {
             // TODO: Display cart items
-            const cartItemsEl = document.getElementById('cartItems');
-            cartItemsEl.innerHTML = ''; // Clear current cart view
-            
-            if (cart.length === 0) {
-                cartItemsEl.innerHTML = '<p>Your cart is empty.</p>';
-                return;
-            }
+            const cartEl = document.getElementById('cartItems');
+    cartEl.innerHTML = cart.length
+        ? cart.map(i => `
+            <div class="cart-item">
+                <div>
+                    <div class="product-name">${i.name}</div>
+                    <div class="product-price">$${i.price.toFixed(2)}</div>
+                </div>
+                <div class="quantity-controls">
+                    <button onclick="updateQuantity(${i.id}, -1)">-</button>
+                    <span>${i.quantity}</span>
+                    <button onclick="updateQuantity(${i.id}, 1)">+</button>
+                    <button onclick="removeFromCart(${i.id})" style="color:red;">✖</button>
+                </div>
+            </div>
+        `).join('')
+        : '<p>Your cart is empty.</p>';
         }
         
         function toggleCart() {
             // TODO: Show/hide cart section
-            
+            const cartSection = document.getElementById('cartSection');
+            cartSection.style.display = 
+                cartSection.style.display === 'none' ? 'block' : 'none';
         }
         
         // Initialize
